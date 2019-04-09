@@ -230,13 +230,19 @@ if ( ! function_exists( 'wrap_body_close_custom' ) ) {
 
 
 
-// function woocommerce_template_loop_product_link_open_custom() {
-// 	global $product;
+function woocommerce_template_loop_product_link_open_custom($post = null, $size = 'post-thumbnail') {
+global $product;
 
-// 	$link = apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product );
+	$link = apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product );
 
-// 	echo '<a href="' . esc_url( $link ) . '" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">';
-// }
+
+	 $post_thumbnail_id = get_post_thumbnail_id( $post );
+	        if ( ! $post_thumbnail_id ) {
+	                return false;
+			}
+			
+			echo '<div class="tpl-catalogue__merch-img" style="background-image: url(' . wp_get_attachment_image_url( $post_thumbnail_id, $size ) . ');"><a href="' . esc_url( $link ) . '" class="woocommerce-LoopProduct-link woocommerce-loop-product__link"></a></div>';
+}	
 
 
 
