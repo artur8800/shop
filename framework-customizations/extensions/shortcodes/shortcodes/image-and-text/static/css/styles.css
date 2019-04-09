@@ -1,0 +1,19 @@
+.fw-image_h .fw-image_h-image {
+	text-align: center;
+}
+.fw-image_h .fw-image_h-inner {
+	text-align: center;
+}
+.fw-image_h .fw-image_h-name {
+	margin-bottom: 10px;
+}
+.fw-image_h .fw-image_h-name h3 {
+	font-size: 18px;
+	margin: 10px 0 5px 0;
+}
+.fw-image_h .fw-image_h-name span {
+	font-size: 28px;
+	color: #666666;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 400;
+}

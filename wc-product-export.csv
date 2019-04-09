@@ -1,0 +1,11 @@
+
+	﻿ID,Тип,Артикул,Имя,Опубликован,рекомендуемый?,"Видимость в каталоге","Короткое описание",Описание,"В наличии?","Базовая цена",Категории,Изображения
+40,simple,,"КОМБИНЕЗОН С ОSТДЕЛКОЙ ИЗ КРУЖЕВА",1,1,visible,,"Комбинезон с отделкой из кружева с геометрическим узором SLAVNO из кружева Комбинезон с отделкой из кружsева с геометрическим узором SLAVNO из кружева",1,240,"Женская одежда","http://localhost/dorechi_final/wp-content/uploads/2019/02/popular-2.jpg, http://localhost/dorechi_final/wp-content/uploads/2019/02/popular-1.png, http://localhost/dorechi_final/wp-content/uploads/2019/02/popular-1-1.png, http://localhost/dorechi_final/wp-content/uploads/2019/03/popular-5.png, http://localhost/dorechi_final/wp-content/uploads/2019/03/popular-3.png"
+41,simple,,"КОМБИНЕЗОН С ОSТДЕЛКОЙ ИЗ КРУЖЕВА С ГЕОМЕТРИЧЕСКИМ УЗОРОМ SLAVNO ИЗ КРУЖЕВА",1,0,visible,,"Это пример товара",1,1200,"Мужская одежда",http://localhost/dorechi_final/wp-content/uploads/2019/02/popular-2.jpg
+43,simple,,"Товар 3",1,0,visible,,"Это пример товара",1,200,"Женская одежда",http://localhost/dorechi_final/wp-content/uploads/2019/02/glases.jpg
+139,simple,,"Товар 4",1,0,visible,,"Это пример товара",1,200,"Женская одежда",http://localhost/dorechi_final/wp-content/uploads/2019/02/glases.jpg
+140,simple,,"Товар 3 (Копировать)",'-1,0,visible,,"Это пример товара",1,200,"Женская одежда",http://localhost/dorechi_final/wp-content/uploads/2019/02/glases.jpg
+141,simple,,"Товар 3 (Копировать)",'-1,0,visible,,"Это пример товара",1,200,"Женская одежда",http://localhost/dorechi_final/wp-content/uploads/2019/02/glases.jpg
+153,simple,,"Товар 5.1",1,0,visible,,"Это описание самого крутого товара",1,245,"Женская одежда",http://localhost/dorechi_final/wp-content/uploads/2019/03/popular-2.png
+159,simple,,"Товар 6",1,0,visible,,"Лучшее описание товара",1,333,"Женская одежда",http://localhost/dorechi_final/wp-content/uploads/2019/03/popular-1.png
+160,simple,,"Товар 7",1,0,visible,,"Это описание просто описание ",1,434,"Мужская одежда",http://localhost/dorechi_final/wp-content/uploads/2019/03/popular-5.png

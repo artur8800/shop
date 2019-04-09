@@ -1,0 +1,193 @@
+// wp_nav_menu( array( 'theme_location' => 'footer_menu', 'menu_class' => 'nav-menu 43434', 'container' => false, 'items_wrap' => '%3$s', 'depth' => 0) ); 
+							wp_nav_menu( array(
+										'theme_location'  => 'footer_menu',
+										'menu'            => '', 
+										'container'       => 'div', 
+										'container_class' => 'tpl-footer__nav', 
+										'container_id'    => '',
+										'menu_class'      => 'tpl-footer__nav-item', 
+										'menu_id'         => '',
+										'echo'            => true,
+										'fallback_cb'     => 'wp_page_menu',
+										'before'          => '',
+										'after'           => '',
+										'link_before'     => '',
+										'link_after'      => '',
+										'items_wrap' => '%3$s',
+										'depth'           => 0,
+										'walker'         => new WPSE_33175_Simple_Walker,
+									) );					
+
+
+
+
+
+
+
+// add_action( 'wp_enqueue_scripts', 'theme_name_scripts' );
+// // add_action('wp_print_styles', 'theme_name_scripts'); // можно использовать этот хук он более поздний
+// function theme_name_scripts() {
+	
+// 	wp_enqueue_style( 'child-style',
+//         get_stylesheet_directory_uri() . '/assets/css/main.css',
+//         array( 'storefront-child-style',  'storefront-woocommerce-style', 'gforms_bootstrapper_style'),
+//         wp_get_theme()->get('Version')
+//     );
+
+// }
+
+
+
+	// function disable_wp_emojicons() {
+
+	//   // all actions related to emojis
+	//   remove_action( 'admin_print_styles', 'print_emoji_styles' );
+	//   remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+	//   remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+	//   remove_action( 'wp_print_styles', 'print_emoji_styles' );
+	//   remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
+	//   remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
+	//   remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
+
+	//   // filter to remove TinyMCE emojis
+	//   add_filter( 'tiny_mce_plugins', 'disable_emojicons_tinymce' );
+	// }
+	// add_action( 'init', 'disable_wp_emojicons' );
+
+
+
+
+
+
+
+
+	
+////////
+// add_action( 'init', 'storefront_remove_storefront_breadcrumbs' );
+
+// function storefront_remove_storefront_breadcrumbs() {
+//    remove_action( 'storefront_before_content', 'woocommerce_breadcrumb', 10 );
+
+
+// }
+
+
+
+
+// add_filter( 'woocommerce_variable_sale_price_html', 'businessbloomer_remove_prices', 10, 2 );
+// add_filter( 'woocommerce_variable_price_html', 'businessbloomer_remove_prices', 10, 2 );
+// add_filter( 'woocommerce_get_price_html', 'businessbloomer_remove_prices', 10, 2 );
+ 
+// function businessbloomer_remove_prices( $price, $product ) {
+// if ( is_single($post='') ) $price = '';
+// remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart' );
+// return $price;
+// }
+
+
+
+
+
+
+// add_filter( 'nav_menu_item_title', 'filter_nav_menu_item_title', 10, 4 );
+// function filter_nav_menu_item_title( $title, $item, $args, $depth ) {
+	
+
+// 	return "<h4 class='tpl-footer__title'>$title</h4>";
+// }
+
+
+
+
+// add_action( 'after_setup_theme', 'theme_register_nav_menu' );
+// function theme_register_nav_menu() {
+// 	register_nav_menu( 'footer', 'Footer Menu' );
+// }
+
+
+
+
+
+// function remove_ul ( $menu ){
+//     return preg_replace( array( '#^<ul[^>]*>#', '#</ul>$#' ), '', $menu );
+// }
+// add_filter( 'wp_nav_menu', 'remove_ul' );
+
+
+// add_action( 'woocommerce_before_shop_loop', 'storefront_sorting_wrapper', 9 );
+
+
+
+
+
+
+add_action( 'woocommerce_before_main_content', 'storefront_before_content_custom', 10 );
+
+if ( ! function_exists( 'storefront_before_content_custom' ) ) {
+	/**
+	 * Before Content
+	 * Wraps all WooCommerce content in wrappers which match the theme markup
+	 *
+	 * @since   1.0.0
+	 * @return  void
+	 */
+	function storefront_before_content_custom() {
+		?>
+		<div id="primary" class="content-area">
+			<main id="main" class="site-main" role="main">
+				
+		<?php
+	}
+}
+
+
+add_action('woocommerce_after_main_content', 'storefront_after_content_custom', 10 );
+
+if ( ! function_exists( 'storefront_after_content_custom' ) ) {
+	/**
+	 * After Content
+	 * Closes the wrapping divs
+	 *
+	 * @since   1.0.0
+	 * @return  void
+	 */
+	function storefront_after_content_custom() {
+		
+		?>	
+			
+			</main><!-- #main -->
+		</div><!-- #primary -->
+
+		<?php
+		
+	}
+}
+
+
+
+add_action('woocommerce_before_shop_loop', 'custom_add_sidebar', 40 ); //woocommerce_before_main_content
+
+if ( ! function_exists( 'custom_add_sidebar' ) ) {
+	/**
+	 * After Content
+	 * Closes the wrapping divs
+	 *
+	 * @since   1.0.0
+	 * @return  void
+	 */
+	function custom_add_sidebar() {
+		?>
+		<div class="tpl-section__sidebar tpl-catalogue__sidebar filter">
+		<?php
+			if( !is_cart()) {
+			dynamic_sidebar( 'sidebar-1' );
+		}
+		?>
+		 
+		</div>
+
+		<?php
+	}
+}
+
+                        
