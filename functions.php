@@ -355,6 +355,61 @@ function wc_dropdown_variation_attribute_options( $args = array() ) {
     echo apply_filters( 'woocommerce_dropdown_variation_attribute_options_html', $html, $args ); 
 } 
 
+
+
+
+
+function wc_varb_price_range( $wcv_price, $product ) {
+ 
+    $prefix = sprintf('%s: ', __('From', 'wcvp_range'));
+ 
+    $wcv_reg_min_price = $product->get_variation_regular_price( 'min', true );
+    $wcv_min_sale_price    = $product->get_variation_sale_price( 'min', true );
+    $wcv_max_price = $product->get_variation_price( 'max', true );
+    $wcv_min_price = $product->get_variation_price( 'min', true );
+ 
+    $wcv_price = ( $wcv_min_sale_price == $wcv_reg_min_price ) ?
+        wc_price( $wcv_reg_min_price ) :
+        '<del>' . wc_price( $wcv_reg_min_price ) . '</del>' . '<ins>' . wc_price( $wcv_min_sale_price ) . '</ins>';
+ 
+    return ( $wcv_min_price == $wcv_max_price ) ?
+        $wcv_price :
+        sprintf('%s%s', $prefix, $wcv_price);
+}
+ 
+add_filter( 'woocommerce_variable_sale_price_html', 'wc_varb_price_range', 10, 2 );
+add_filter( 'woocommerce_variable_price_html', 'wc_varb_price_range', 10, 2 );
+
+
+// add_filter( 'woocommerce_get_price_html', 'custom_price_html', 100, 2 );
+// function custom_price_html( $price, $product ){
+//   $price .=   get_post_meta( get_the_ID(), '_regular_price', true);
+//   $price .= '<span>' . sprintf(get_woocommerce_currency_symbol() ) ;
+//     return apply_filters( 'woocommerce_get_price', $price );
+// }
+
+// add_filter( 'woocommerce_show_variation_price', '__return_false' );
+
+add_filter('woocommerce_currency_symbol', 'change_existing_currency_symbol', 10, 2);
+
+function change_existing_currency_symbol( $currency_symbol, $currency ) {
+     switch( $currency ) {
+          case 'UAH': $currency_symbol = ' грн'; break;
+     }
+     return $currency_symbol;
+}
+
+// remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10 );
+
+    // function remove_price() {
+    //   if( is_front_page()) { 
+	// 	remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart' );
+	// 	remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10 );
+	// 	remove_action( 'woocommerce_shop_loop_item_title', 'woocommerce_template_loop_product_title', 10 );	
+    //   }
+	// }
+
+
 require 'src/child-functions-header.php';
 require 'src/child-functions-home.php';
 require 'src/child-functions-wc.php';

@@ -266,7 +266,8 @@ td.product-quantity, td.product-price, td.product-subtotal {
 }
 
 label.screen-reader-text {
-    display: none;
+    display: block;
+    float: left;
 }
 
 .tpl-cart-table__input {
@@ -466,9 +467,7 @@ label.pa_black {
     text-transform: uppercase;
 }
 
-.quantity  {
-    
-}
+.quantity {}
 
 .quantity input {
     margin-left: 0;
