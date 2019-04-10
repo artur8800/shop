@@ -11,7 +11,7 @@
 	/**
 	 * 
 	 */
-		remove_action('storefront_header', 'storefront_header_container', 0111111111 );
+		remove_action('storefront_header', 'storefront_header_container', 0 );
 		remove_action('storefront_header', 'storefront_header_container_close', 41 );
 		remove_action('storefront_header', 'storefront_skip_links', 5 );
 		remove_action('storefront_header', 'storefront_site_branding', 20 );
