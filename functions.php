@@ -9,7 +9,7 @@
 	
 	function remove_header_actions_custom() {
 	/**
-	 * Header fnnf
+	 * 
 	 */
 		remove_action('storefront_header', 'storefront_header_container', 0 );
 		remove_action('storefront_header', 'storefront_header_container_close', 41 );
