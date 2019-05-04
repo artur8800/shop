@@ -177,15 +177,14 @@
 
 	
 function wpse240457_add_class($html) {
-  $html = '<div id="popular" class="product_list_widget tpl-popular__body"><div class="container"><div class="catalouge"><div class="tpl-catalogue__merch-container itemsContainer block-mode">';
+  $html = '<div id="popular" class="row">';
   return $html;
 }
 add_filter('woocommerce_before_widget_product_list', 'wpse240457_add_class', 1, 15);
 
 
 function wpse240457_close_class($html) {
-  $html = '</div></div></div></div>
-	';
+  $html = '</div>';
   return $html;
 }
 add_filter('woocommerce_after_widget_product_list', 'wpse240457_close_class', 1, 15);
@@ -617,6 +616,96 @@ function iconic_hide_out_of_stock_products( $q ) {
 add_filter( 'fw_ext_page_builder_content_wrapper_class',  function(){
      return 'tpl-section__container';
 } );
+
+
+
+function duck_product_categories( $atts ) {
+        global $woocommerce_loop;
+
+        $atts = shortcode_atts( array(
+            'number'     => null,
+            'orderby'    => 'name',
+            'order'      => 'ASC',
+            'columns'    => '4',
+            'hide_empty' => 1,
+            'parent'     => '',
+            'ids'        => ''
+        ), $atts );
+
+        if ( isset( $atts['ids'] ) ) {
+            $ids = explode( ',', $atts['ids'] );
+            $ids = array_map( 'trim', $ids );
+        } else {
+            $ids = array();
+        }
+
+        $hide_empty = ( $atts['hide_empty'] == true || $atts['hide_empty'] == 1 ) ? 1 : 0;
+
+        // get terms and workaround WP bug with parents/pad counts
+        $args = array(
+            'orderby'    => $atts['orderby'],
+            'order'      => $atts['order'],
+            'hide_empty' => $hide_empty,
+            'include'    => $ids,
+            'pad_counts' => true,
+            'child_of'   => $atts['parent']
+        );
+
+        $product_categories = get_terms( 'product_cat', $args );
+
+        if ( '' !== $atts['parent'] ) {
+            $product_categories = wp_list_filter( $product_categories, array( 'parent' => $atts['parent'] ) );
+        }
+
+        if ( $hide_empty ) {
+            foreach ( $product_categories as $key => $category ) {
+                if ( $category->count == 0 ) {
+                    unset( $product_categories[ $key ] );
+                }
+            }
+        }
+
+        if ( $atts['number'] ) {
+            $product_categories = array_slice( $product_categories, 0, $atts['number'] );
+        }
+
+        $columns = absint( $atts['columns'] );
+        $woocommerce_loop['columns'] = $columns;
+
+        ob_start();
+
+        if ( $product_categories ) {
+            ?>
+            
+            <?php
+            foreach ( $product_categories as $category ) {
+                ?>
+                <div class="col-lg-3">
+                    <a href="<?php echo get_category_link($category); ?>">
+                        <?php
+                             $thumbnail_id = get_woocommerce_term_meta( $category->term_id, 'thumbnail_id', true );
+                                $image = wp_get_attachment_url( $thumbnail_id );
+                                if ( $image ) {
+                                    echo '<img src="' . $image . '" alt="" />';
+                                }
+                            ?>
+							<?php echo $category->name; 
+								echo '<div class="shop_cat_desc">'.$category->description.'</div>';
+							?>
+                     </a>
+                </div>
+              
+                <?php
+            }
+
+            woocommerce_product_loop_end();
+        }
+
+        woocommerce_reset_loop();
+
+        return '<div class="row">' . ob_get_clean() . '</div>';
+    }
+add_shortcode('dd_product_categories', 'duck_product_categories');
 
 require 'src/child-functions-header.php';
 require 'src/child-functions-home.php';

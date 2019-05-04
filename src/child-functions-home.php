@@ -131,7 +131,7 @@ if ( ! function_exists( 'storefront_recent_products_custom' ) ) {
 
 
 
-if ( ! function_exists( 'storefront_product_categories' ) ) {
+if ( ! function_exists( 'storefront_product_categories_customt' ) ) {
 	/**
 	 * Display Product Categories
 	 * Hooked into the `homepage` action in the homepage template
@@ -140,7 +140,7 @@ if ( ! function_exists( 'storefront_product_categories' ) ) {
 	 * @param array $args the product section args.
 	 * @return void
 	 */
-	function storefront_product_categories_custom( $args ) {
+	function storefront_product_categories_customt( $args ) {
 		$args = apply_filters(
 			'storefront_product_categories_args', array(
 				'limit'            => 3,

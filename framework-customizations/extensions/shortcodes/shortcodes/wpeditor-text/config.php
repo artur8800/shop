@@ -8,4 +8,5 @@ $cfg['page_builder'] = array(
 	'title'       => __( 'wp-editor', 'fw' ),
 	'description' => __( 'Add a shortcodes', 'fw' ),
 	'tab'         => __( 'Content Elements', 'fw' ),
+	'disable_correction' => true,
 );

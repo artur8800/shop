@@ -9,3 +9,4 @@ interface Population_Method_Interface
 	public function get_frontend_data($post_id);
 
 }
+
