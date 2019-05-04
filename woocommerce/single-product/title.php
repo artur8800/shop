@@ -20,4 +20,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-the_title( '<h3 class="tpl-description__title product_title entry-title">', '</h3>' );
+the_title( '<div calss="tpl-description tpl-description--item"><h3 class="tpl-description__title product_title entry-title">', '</h3></div>' );

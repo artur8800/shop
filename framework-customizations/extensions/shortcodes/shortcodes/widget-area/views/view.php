@@ -10,7 +10,7 @@
 <div class="container tpl-popular">
 	<div class="tpl-popular__container">
 		<div id="popular-slider" class="tpl-popular__body">
-			<?php dynamic_sidebar('product-area'); ?>
+			<?php dynamic_sidebar( $atts['sidebar'] ); ?>
 		</div>
 	</div>
 	

@@ -20,31 +20,29 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 global $product;
 
+
+$product_url =  get_the_post_thumbnail_url($product->ID);
+
 if ( ! is_a( $product, 'WC_Product' ) ) {
 	return;
 }
 
 ?>
-
-		<div class="col-xs-4 tpl-popular__item-wrapper">
-		<?php do_action( 'woocommerce_widget_product_item_start', $args ); ?>
-			<div class="tpl-popular__item">
-				<div class="tpl-popular__item-img">
-					<?php echo $product->get_image(); // PHPCS:Ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-				</div>
-				<div class="tpl-popular__item-body">
-					<h3 class="tpl-popular__item-title product-title"><?php echo wp_kses_post( $product->get_name() ); ?></h3>
-					
-					<?php if ( ! empty( $show_rating ) ) : ?>
-						<?php echo wc_get_rating_html( $product->get_average_rating() ); // PHPCS:Ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-					<?php endif; ?>
-
-					<?php echo $product->get_price_html(); // PHPCS:Ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-					<a href="<?php echo esc_url( $product->get_permalink() ); ?>"><button class="tpl-popular__item-button">Подробнее</button></a> 
-				</div>
-				
-			</div>
-			<?php do_action( 'woocommerce_widget_product_item_end', $args ); ?>
-		</div>
 	
+				<?php do_action( 'woocommerce_widget_product_item_start', $args ); ?>
+				<div class="tpl-catalogue__merch-item">
+					<div class="tpl-catalogue__merch-img" style="background-image: url('<?php echo $product_url ; ?>');"></div>
+					<div class="tpl-catalogue__merch-body">
+						<h3 class="tpl product-title"><?php echo wp_kses_post( $product->get_name() ); ?></h3>
+						
+						<?php if ( ! empty( $show_rating ) ) : ?>
+							<?php echo wc_get_rating_html( $product->get_average_rating() ); // PHPCS:Ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+						<?php endif; ?>
+
+						<?php echo $product->get_price_html(); // PHPCS:Ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+						<a href="<?php echo esc_url( $product->get_permalink() ); ?>"><button class="">Подробнее</button></a> 
+					</div>
+					
+				</div>
+				<?php do_action( 'woocommerce_widget_product_item_end', $args ); ?>
 	

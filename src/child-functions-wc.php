@@ -6,7 +6,21 @@
  *
  * 
  */
-
+if ( ! function_exists( 'storefront_before_content_custom' ) ) {
+	/**
+	 * Before Content
+	 * Wraps all WooCommerce content in wrappers which match the theme markup
+	 *
+	 * @since   1.0.0
+	 * @return  void
+	 */
+	function storefront_before_content_custom() {
+		?>
+		<div id="primary" class="content-area">
+			<main id="main" class="theme-main" role="main">
+		<?php
+	}
+}
 
 
 
@@ -94,7 +108,22 @@ if ( ! function_exists( 'wrap_loop' ) ) {
 	}
 }
 
-	
+
+if ( ! function_exists( 'wrap_loop_close' ) ) {
+	/**
+	 * After Content
+	 * Closes the wrapping divs
+	 *
+	 * @since   1.0.0
+	 * @return  void
+	 */
+	function wrap_loop_close() {
+		?>
+		</div>
+		<?php
+	}
+}
+
 
  
 function bbloomer_remove_sidebar_product_pages() {
@@ -124,21 +153,6 @@ if ( ! function_exists( 'wrap_loop_catalog_open' ) ) {
 }
 
 
-if ( ! function_exists( 'wrap_loop_close' ) ) {
-	/**
-	 * After Content
-	 * Closes the wrapping divs
-	 *
-	 * @since   1.0.0
-	 * @return  void
-	 */
-	function wrap_loop_close() {
-		?>
-		</div>
-		<?php
-	}
-}
-
 
 
 
@@ -156,6 +170,51 @@ if ( ! function_exists( 'wrap_loop_catalog_close' ) ) {
 
 
 			</div>
+		</div>
+		
+		
+
+		<?php
+	}
+}
+
+
+if ( ! function_exists( 'wrap_loop_catalog_merch_open' ) ) {
+	/**
+	 * After Content
+	 * Closes the wrapping divs
+	 *
+	 * @since   1.0.0
+	 * @return  void
+	 */
+	function wrap_loop_catalog_merch_open() {
+		?>
+		<div class="tpl-catalogue__merch-container itemsContainer list-mode">
+		
+		
+
+		<?php
+	}
+}
+
+
+
+
+
+
+if ( ! function_exists( 'wrap_loop_catalog_merch_close' ) ) {
+	/**
+	 * After Content
+	 * Closes the wrapping divs
+	 *
+	 * @since   1.0.0
+	 * @return  void
+	 */
+	function wrap_loop_catalog_merch_close() {
+		?>
+
+
+			
 		</div>
 		
 		
@@ -246,6 +305,25 @@ global $product;
 
 
 
+add_action('get_url_custom', 'get_url_custom_action');
+function zaebal_get_url($post = null, $size = 'post-thumbnail') {
+global $product;
+
+	$link = apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product );
+
+
+	 $post_thumbnail_id = get_post_thumbnail_id( $post );
+	        if ( ! $post_thumbnail_id ) {
+	                return false;
+			}
+			
+			echo '<div class="tpl-popular__item-img" style="background-image: url(' . wp_get_attachment_image_url( $post_thumbnail_id, $size ) . ');"></div>';
+}
+
+	
+
+
+
 
 
 if ( ! function_exists( 'woocommerce_template_loop_product_link_close_custom' ) ) {
@@ -310,5 +388,42 @@ if ( ! function_exists( 'woocommerce_template_loop_add_to_cart_wrap_close' ) ) {
 }
 
 
+// add_action( 'woocommerce_before_add_to_cart_form', 'woocommerce_before_add_to_cart_form_wrapper' );
+
+if ( ! function_exists( 'woocommerce_before_add_to_cart_form_wrapper' ) ) {
+	/**
+	 * After Content
+	 * Closes the wrapping divs
+	 *
+	 * @since   1.0.0
+	 * @return  void
+	 */
+	function woocommerce_before_add_to_cart_form_wrapper() {
+		?>
+
+		<div class="tpl-item__form-container">
+
+		<?php
+	}
+}
+
+// add_action( 'woocommerce_after_add_to_cart_form', 'woocommerce_after_add_to_cart_form_wrapper_close', 0 );
+
+if ( ! function_exists( 'woocommerce_after_add_to_cart_form_wrapper_close' ) ) {
+	/**
+	 * After Content
+	 * Closes the wrapping divs
+	 *
+	 * @since   1.0.0
+	 * @return  void
+	 */
+	function woocommerce_after_add_to_cart_form_wrapper_close() {
+		?>
+
+		</div>
+
+		<?php
+	}
+}
 
 

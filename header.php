@@ -59,7 +59,7 @@
 	?>
 
 	<div id="content" class="site-content" tabindex="-1">
-		<div class="container">
+		
 
 		<?php
 		do_action( 'storefront_content_top' );

@@ -29,8 +29,8 @@ if ( post_password_required() ) {
 	return;
 }
 ?>
-<div id="product-<?php the_ID(); ?>" <?php wc_product_class(); ?>>
-
+<div id="product-<?php the_ID(); ?>" <?php wc_product_class('', $product ); ?>>
+	
 	<?php
 		/**
 		 * Hook: woocommerce_before_single_product_summary.
@@ -41,10 +41,12 @@ if ( post_password_required() ) {
 		do_action( 'woocommerce_before_single_product_summary' );
 	?>
 
-	<div class="tpl-description tpl-description--item summary entry-summary">
+	<div class="tpl-section__main summary entry-summary"> 
 		<?php
 			/**
 			 * Hook: woocommerce_single_product_summary.
+			 * 
+			 * tpl-description tpl-description--item
 			 *
 			 * @hooked woocommerce_template_single_title - 5
 			 * @hooked woocommerce_template_single_rating - 10

@@ -35,8 +35,8 @@ $custom_extra_class = ( isset( $atts['extra_class'] ) && $atts['extra_class'] ) 
 
 
 ?>
-<section class="<?php echo esc_attr($custom_section_class); ?> <?php echo esc_attr($section_extra_classes) ?>" <?php echo $section_style; ?> <?php echo $bg_video_data_attr; ?> >
-	<div class="<?php echo esc_attr($container_class); ?>">
+<section class="tpl-section<?php echo esc_attr($custom_section_class); ?>" <?php echo $section_style; ?> <?php echo $bg_video_data_attr; ?> >
+	<div class="<?php echo esc_attr($container_class); ?><?php echo esc_attr($custom_extra_class) ?>">
 		<?php echo do_shortcode( $content ); ?>
 	</div>
 </section>

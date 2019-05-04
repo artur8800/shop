@@ -9,7 +9,7 @@
 
 ?>
 
-		</div><!-- .col-full -->
+		
 	</div><!-- #content -->
 
 	<?php do_action( 'storefront_before_footer' ); ?>
