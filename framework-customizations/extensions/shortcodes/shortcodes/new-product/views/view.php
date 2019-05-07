@@ -14,10 +14,11 @@ if ( ! empty($atts['custom_class'] ) ) {
 }
 
 
+
+
 ?>
 <div class="tpl-item tpl-item__home<?php echo esc_attr($class); ?>">
 	<div class="tpl-item_image" style="background-image: url('<?php echo esc_attr($image); ?>');">
-		<p class="tpl-item_desc"><?php echo $atts['desc']; ?></p>
 		<button class="tpl-button tpl-button--sm tpl-button--link"><a href="<?php echo esc_attr($atts['link']) ?>">Смотреть</a></button>
 	</div>
 	

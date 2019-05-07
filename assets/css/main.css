@@ -4779,6 +4779,7 @@ button:hover, button:active, button:focus {
     -ms-flex-align: center;
     align-items: center;
     margin: 5px 0;
+    padding: 0 0 5px 0;
     color: rgba(51, 51, 51, 0.5);
     text-transform: uppercase;
 }

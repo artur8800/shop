@@ -351,12 +351,14 @@ function the_excerpt_max_charlength( $charlength, $excerpt ){
 		$subex = mb_substr( $excerpt, 0, $charlength - 5 );
 		$exwords = explode( ' ', $subex );
 		$excut = - ( mb_strlen( $exwords[ count( $exwords ) - 1 ] ) );
+		
 		if ( $excut < 0 ) {
 			echo mb_substr( $subex, 0, $excut );
+		
 		} else {
 			echo $subex;
 		}
-		echo '...';
+		
 	} else {
 		echo $excerpt;
 	}
@@ -682,16 +684,18 @@ function duck_product_categories( $atts ) {
                 ?>
                 <div class="col-lg-3">
                     <a href="<?php echo get_category_link($category); ?>">
-                        <?php
-                             $thumbnail_id = get_woocommerce_term_meta( $category->term_id, 'thumbnail_id', true );
-                                $image = wp_get_attachment_url( $thumbnail_id );
-                                if ( $image ) {
-                                    echo '<img src="' . $image . '" alt="" />';
-                                }
-                            ?>
-							<?php echo $category->name; 
-								echo '<div class="shop_cat_desc">'.$category->description.'</div>';
+						<div class="hover-block">
+							<?php
+								$thumbnail_id = get_woocommerce_term_meta( $category->term_id, 'thumbnail_id', true );
+									$image = wp_get_attachment_url( $thumbnail_id );
+									if ( $image ) {
+										echo '<div class="hover-block__image" style="background-image: url(' . $image . ');"></div>';
+									}
+								?>
+								<?php echo $category->name; 
+									echo '<div class="shop_cat_desc">'.$category->description.'</div>';
 							?>
+						</div>
                      </a>
                 </div>
               

@@ -19,11 +19,5 @@ $options = array(
 		'desc'  => __( 'Custom-class title of the block.', 'fw' ),
 		'type'  => 'text',
 		'value' => ''
-	),
-	'desc'  => array(
-		'label' => __( 'New product Description', 'fw' ),
-		'desc'  => __( 'Enter a few words that describe the product', 'fw' ),
-		'type'  => 'textarea',
-		'value' => ''
 	)
 );

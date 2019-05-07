@@ -80,12 +80,8 @@ class My_Custom_Widget_Class extends WP_Widget {
 		}
 		?>
 		<?php echo $args['before_widget']; ?>
-		<?php
-		if ( $title ) {
-			echo $args['before_title'] . $title . $args['after_title'];
-		}
-		?>
-		<div class="tpl-recent_post">
+		
+		<div class="row">
 			<?php foreach ( $r->posts as $recent_post ) : ?>
 				<?php
 				$post_title = get_the_title( $recent_post->ID );
@@ -94,20 +90,20 @@ class My_Custom_Widget_Class extends WP_Widget {
 				$content = get_the_excerpt( $recent_post );
 				
 				?>
-				<div class="tpl-about__item">
-					
-                    <div class="tpl-about__img" style="background-image: url('<?php echo $url ; ?>');">
-                        <a href="<?php the_permalink( $recent_post->ID ); ?>" ></a>
-                    </div>
-                    <div class="tpl-about__content">
-                        
-                        <?php if ( $show_date ) : ?>
-                            <date class="tpl-about__date"><?php echo get_the_date( '', $recent_post->ID ); ?></date>
-                        <?php endif; ?>
-                            <h5 class="tpl-about__title"><?php echo $title; ?></h5>
-                            <p class="tpl-about__description"><?php echo the_excerpt_max_charlength(100, $content);  ?></p>
-                    </div>
-					
+				<div class="tpl-about__item col-lg-3">
+					<div class="tpl-about__container shadow__image">
+						<div class="tpl-about__img" style="background-image: url('<?php echo $url ; ?>');">
+							<a href="<?php the_permalink( $recent_post->ID ); ?>" ></a>
+						</div>
+						<div class="tpl-about__content post-content__home">
+							
+							<?php if ( $show_date ) : ?>
+								<date class="tpl-about__date"><?php echo get_the_date( '', $recent_post->ID ); ?></date>
+							<?php endif; ?>
+								<h5 class="tpl-about__title"><?php echo $title; ?></h5>
+								<p class="tpl-about__description"><?php echo the_excerpt_max_charlength(95, $content) . '...'; ?></p>
+						</div>
+					</div>
 				</div>
 			<?php endforeach; ?>
 		</div>
