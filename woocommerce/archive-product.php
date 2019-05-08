@@ -71,7 +71,7 @@ if ( woocommerce_product_loop() ) {
 			do_action( 'woocommerce_shop_loop' );
 
 			
-			woocommerce_get_template_part( 'content', 'product' );
+			wc_get_template_part( 'content', 'product' );
 			
 			
 		}

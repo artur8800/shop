@@ -91,8 +91,8 @@ class My_Custom_Widget_Class extends WP_Widget {
 				
 				?>
 				<div class="tpl-about__item col-lg-3">
-					<div class="tpl-about__container shadow__image">
-						<div class="tpl-about__img" style="background-image: url('<?php echo $url ; ?>');">
+					<div class="tpl-about__container">
+						<div class="tpl-about__img shadow__image" style="background-image: url('<?php echo $url ; ?>');">
 							<a href="<?php the_permalink( $recent_post->ID ); ?>" ></a>
 						</div>
 						<div class="tpl-about__content post-content__home">

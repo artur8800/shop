@@ -30,19 +30,18 @@ if ( ! is_a( $product, 'WC_Product' ) ) {
 ?>
 	
 				<?php do_action( 'woocommerce_widget_product_item_start', $args ); ?>
-				<div class="tpl-catalogue__merch-item">
+			<div class="col-lg-3">
+				<div class="tpl-catalogue__merch-item_widget">
 					<div class="tpl-catalogue__merch-img" style="background-image: url('<?php echo $product_url ; ?>');"></div>
 					<div class="tpl-catalogue__merch-body">
 						<h3 class="tpl product-title"><?php echo wp_kses_post( $product->get_name() ); ?></h3>
 						
-						<?php if ( ! empty( $show_rating ) ) : ?>
-							<?php echo wc_get_rating_html( $product->get_average_rating() ); // PHPCS:Ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-						<?php endif; ?>
 
 						<?php echo $product->get_price_html(); // PHPCS:Ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 						<a href="<?php echo esc_url( $product->get_permalink() ); ?>"><button class="">Подробнее</button></a> 
 					</div>
 					
 				</div>
+			</div>
 				<?php do_action( 'woocommerce_widget_product_item_end', $args ); ?>
 	
