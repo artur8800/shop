@@ -41,7 +41,6 @@
 
 		remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 10 );
 		remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
-		// remove_action( 'woocommerce_before_shop_loop', 'storefront_woocommerce_pagination', 30 );
 		remove_action( 'woocommerce_before_shop_loop','storefront_sorting_wrapper',9 );
 		remove_action( 'woocommerce_before_shop_loop','storefront_sorting_wrapper_close',31 );
 		remove_action( 'woocommerce_before_shop_loop', 'woocommerce_output_all_notices', 10 );
@@ -50,29 +49,13 @@
 		remove_action( 'woocommerce_before_shop_loop_item', 'woocommerce_template_loop_product_link_open', 10 );  
 		remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_product_link_close', 5 );
 
-		// remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
-
 		remove_action( 'storefront_after_footer', 'storefront_sticky_single_add_to_cart', 999 );
 		remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10 );
 		
-		
-		//
-		// remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_rating', 10 );
-		// remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 20 );
 		remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
-		// remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_sharing', 50 );
-		// remove_action('woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10);
-		// remove_action('woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 15 );
-		// remove_action('woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
-		// remove_action('woocommerce_after_single_product_summary', 'woocommerce_template_single_price', 10 );
-		// remove_action( 'woocommerce_after_add_to_cart_form', 'action_woocommerce_after_add_to_cart_form', 10, 0 ); 
+	
 		remove_action('woocommerce_shop_loop_item_title', 'woocommerce_template_loop_product_title', 10 );
 		
-		// remove_action( 'woocommerce_after_single_product_summary', 'action_woocommerce_after_single_product_summary', 10, 2 ); 
-		// remove_action( 'woocommerce_after_add_to_cart_form', 'action_woocommerce_after_add_to_cart_form', 10, 0 ); 
-
-
-		// remove_action( 'woocommerce_before_add_to_cart_button', 10, 0 );
 
 		// Удаляем лишнее с head части сайта
 		// 2.0
@@ -100,7 +83,7 @@
 
 
 		function wpassist_remove_block_library_css(){
-		// wp_dequeue_style( 'wp-block-library' );
+		wp_dequeue_style( 'wp-block-library' );
 	} 
 	add_action( 'wp_enqueue_scripts', 'wpassist_remove_block_library_css' );
 
@@ -115,7 +98,6 @@
 
 
 	
-	// add_action('woocommerce_after_single_product_summary', 'woocommerce_template_single_price', 0 );
 
 	/**
 	 * General
@@ -123,18 +105,7 @@
 	remove_filter( 'the_content', 'wpautop' );
 	remove_filter( 'the_excerpt', 'wpautop' );
 
-// function remove_hooks() {
-// 	remove_action('homepage', 'storefront_product_categories', 20);
-// 	remove_action('homepage', 'storefront_recent_products', 30);
-// 	remove_action('homepage', 'storefront_featured_products', 40);
-// 	remove_action('homepage', 'storefront_popular_products', 50);
-// 	remove_action('homepage', 'storefront_on_sale_products', 60);
-// 	remove_action('homepage', 'storefront_best_selling_products', 70);
 
-// }
-
-// add_action('init', 'remove_hooks');
-	
 
 /* REMOVE SECTION END */
 
@@ -166,8 +137,7 @@
 	add_action('woocommerce_before_single_product_summary', 'wrap_single_product_main_open', 0);
 	add_action('woocommerce_after_single_product_summary', 'wrap_single_product_main_close', 0);
 	add_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10 );
-	// add_action('woocommerce_before_single_product_summary', 'wrap_single_product_container_open', 0);
-	// add_action('woocommerce_after_single_product_summary', 'wrap_single_product_container_close', 40);
+	
 	/**
 	 * Homepage
 	 */
@@ -176,35 +146,30 @@
  
 
 	
-function wpse240457_add_class($html) {
-  $html = '<div id="popular" class="row">';
+function wrap_widget_product_start($html) {
+  $html = '<div id="popular popular-product__widget" class="row">';
   return $html;
 }
-add_filter('woocommerce_before_widget_product_list', 'wpse240457_add_class', 1, 15);
+add_filter('woocommerce_before_widget_product_list', 'wrap_widget_product_start', 1, 15);
 
 
-function wpse240457_close_class($html) {
+function wrap_widget_product_end($html) {
   $html = '</div>';
   return $html;
 }
-add_filter('woocommerce_after_widget_product_list', 'wpse240457_close_class', 1, 15);
+add_filter('woocommerce_after_widget_product_list', 'wrap_widget_product_end', 1, 15);
 
 
-// function filter_all_widget_title( $title ) {
-// 	return "<h4 class='tpl-footer__title'>$title</h4>";
-// }
-
-// add_filter( 'storefront_sidebar_widget_tags', 'filter_all_widget_title' );
-
-
-
-
+function filter_all_storefront_sidebar_argse( $atts ) {
+	
+	$atts['before_title'] = '<h4 class="widget-title">';
+	$atts['after_title'] = '</h4>';
+	return $atts;
+}
+add_filter( 'storefront_sidebar_widget_tags', 'filter_all_storefront_sidebar_argse');
 
 
 
-// 	add_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10 );
-// add_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 15 );
-// add_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
 	
 
 
@@ -220,17 +185,16 @@ add_filter('woocommerce_after_widget_product_list', 'wpse240457_close_class', 1,
 	add_action('woocommerce_after_shop_loop', 'wrap_loop_catalog_close', 50);
 	add_action('woocommerce_before_shop_loop', 'wrap_loop_catalog_merch_open', 12 );
 	add_action('woocommerce_after_shop_loop', 'wrap_loop_catalog_merch_close', 48);
-	// add_action('woocommerce_before_shop_loop_item_title', 'woocommerce_get_product_thumbnail_custom', 10);
+
 	add_action( 'woocommerce_before_shop_loop_item_title', 'wrap_body_custom', 15 );
 	add_action( 'woocommerce_after_shop_loop_item', 'wrap_body_close_custom', 45 );
 
 	add_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_link_open_custom', 10 );
-	// add_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_link_open', 14 );
-	// add_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_product_link_close_custom', 5 );
+	
 
 	add_action('woocommerce_shop_loop_item_title', 'woocommerce_template_loop_product_title_custom', 10 );
-	// add_action('woocommerce_before_single_product', 'wrap_single_product_open', 0);
-	// add_action('woocommerce_after_single_product', 'wrap_single_product_close', 10);
+
+
 	add_action( 'wp', 'bbloomer_remove_sidebar_product_pages' );
 
 	add_action('woocommerce_before_single_product', 'wrap_single_product_page_open', 0 );
@@ -254,7 +218,7 @@ add_filter('woocommerce_after_widget_product_list', 'wpse240457_close_class', 1,
 	// add_filter( 'woocommerce_before_shop_loop_item', 'woocommerce_template_loop_product_link_open_custom', 0 ); 
 
 	
-	// add_filter( 'emoji_svg_url', '__return_false' );
+	add_filter( 'emoji_svg_url', '__return_false' );
 /* ADD FILTER SECTION END */
 
 /* REGISTER SECTION STARY */
@@ -325,15 +289,6 @@ function my_custom_widgets_init(){
 
 
 
-//  add_action('woocommerce_single_product_summary', 'wrap_product_description', 20);
-// function wrap_product_description() {
-//      if ( !is_home() ) {
-//      echo '<div class="tpl-description__body"><p class="tpl-catalogue__merch-description">';
-//      the_excerpt();
-//      echo '</p></div>';
-//      }
-// }
-
 
 add_filter( 'woocommerce_product_additional_information_heading', 'filter_function_name_3205' );
 function filter_function_name_3205( $heading ){
@@ -373,13 +328,13 @@ add_action( 'wp_enqueue_scripts', 'sf_child_theme_dequeue_style', 999 );
 function sf_child_theme_dequeue_style() {
 	
 	wp_dequeue_style( 'storefront-icons');
-	// wp_dequeue_style( 'storefront-fonts');
+	wp_dequeue_style( 'storefront-fonts');
 	// wp_dequeue_style( 'storefront-navigation');
 	wp_dequeue_style( 'woocommerce-general' );
 	wp_dequeue_style( 'woocommerce-smallscreen' );
 	wp_dequeue_style( 'storefront-style' );
 	wp_dequeue_style( 'storefront-woocommerce-style' );
-	// wp_dequeue_style( 'storefront-gutenberg-blocks' );
+	wp_dequeue_style( 'storefront-gutenberg-blocks' );
 
 }	
 
@@ -426,46 +381,6 @@ function bbloomer_ins_woocommerce_product_excerpt() {
      }
 }
 
-// remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
-
-// add_action('woocommerce_single_product_summary', 'woocommerce_template_single_price', 30 );
-
-
-// add_action('woocommerce_single_product_summary', 'wpo_wcpdf_show_product_full_description', 10 );
-
-// function wpo_wcpdf_show_product_full_description ( $order ) {
-//     if (empty($item['product'])) return;
-//     if ( method_exists( $item['product'], 'get_description' ) ) {
-//         $_product = $item['product']->is_type( 'variation' ) ? wc_get_product( $item['product']->get_parent_id() ) : $item['product'];
-//         $description = $_product->get_description();
-//     } else { // WC 2.6 or older:
-//         $description = $item['product']->post->post_content;
-//     }
- 
-//     printf('<div class="product-description">%s</div>', $description );
-// }
-
-
-
-// add_filter( 'br_filters_options-woocommerce_removes_pagination-show', array(__CLASS__, 'woocommerce_removes_pagination'), 10, 1 );
-
-// function woocommerce_removes_pagination($show) {
-// 	return true;
-// }
-
-// function get_text_for_select_based_on_attribute($attribute) {
-
-// // Find the name of the attribute for the slug we passed in to the function
-// $attribute_name = wc_attribute_label($attribute);
-
-// // Create a string for our select
-// $select_text = 'Select a ' . $attribute_name;
-
-// // Send the $select_text variable back to our calling function
-// return $select_text;
-// }
-
-// add_filter('variable_product_select_text', 'get_text_for_select_based_on_attribute', 10, 1);
 
 
 function wc_dropdown_variation_attribute_options( $args = array() ) { 
@@ -547,14 +462,6 @@ add_filter( 'woocommerce_variable_sale_price_html', 'wc_varb_price_range', 10, 2
 add_filter( 'woocommerce_variable_price_html', 'wc_varb_price_range', 10, 2 );
 
 
-// add_filter( 'woocommerce_get_price_html', 'custom_price_html', 100, 2 );
-// function custom_price_html( $price, $product ){
-//   $price .=   get_post_meta( get_the_ID(), '_regular_price', true);
-//   $price .= '<span>' . sprintf(get_woocommerce_currency_symbol() ) ;
-//     return apply_filters( 'woocommerce_get_price', $price );
-// }
-
-// add_filter( 'woocommerce_show_variation_price', '__return_false' );
 
 add_filter('woocommerce_currency_symbol', 'change_existing_currency_symbol', 10, 2);
 
@@ -564,17 +471,6 @@ function change_existing_currency_symbol( $currency_symbol, $currency ) {
      }
      return $currency_symbol;
 }
-
-// remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10 );
-
-    // function remove_price() {
-    //   if( is_front_page()) { 
-	// 	remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart' );
-	// 	remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10 );
-	// 	remove_action( 'woocommerce_shop_loop_item_title', 'woocommerce_template_loop_product_title', 10 );	
-    //   }
-	// }
-
 
 
 add_filter( 'rest_authentication_errors', function( $result ){
@@ -686,7 +582,7 @@ function duck_product_categories( $atts ) {
                     <a href="<?php echo get_category_link($category); ?>">
 						<div class="hover-block">
 							<?php
-								$thumbnail_id = get_woocommerce_term_meta( $category->term_id, 'thumbnail_id', true );
+								$thumbnail_id = get_term_meta( $category->term_id, 'thumbnail_id', true );
 									$image = wp_get_attachment_url( $thumbnail_id );
 									if ( $image ) {
 										echo '<div class="hover-block__image" style="background-image: url(' . $image . ');"></div>';

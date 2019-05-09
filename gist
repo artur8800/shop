@@ -37,6 +37,71 @@
 // }
 
 
+//  add_action('woocommerce_single_product_summary', 'wrap_product_description', 20);
+// function wrap_product_description() {
+//      if ( !is_home() ) {
+//      echo '<div class="tpl-description__body"><p class="tpl-catalogue__merch-description">';
+//      the_excerpt();
+//      echo '</p></div>';
+//      }
+// }
+
+
+
+
+// remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
+
+// add_action('woocommerce_single_product_summary', 'woocommerce_template_single_price', 30 );
+
+
+// add_action('woocommerce_single_product_summary', 'wpo_wcpdf_show_product_full_description', 10 );
+
+// function wpo_wcpdf_show_product_full_description ( $order ) {
+//     if (empty($item['product'])) return;
+//     if ( method_exists( $item['product'], 'get_description' ) ) {
+//         $_product = $item['product']->is_type( 'variation' ) ? wc_get_product( $item['product']->get_parent_id() ) : $item['product'];
+//         $description = $_product->get_description();
+//     } else { // WC 2.6 or older:
+//         $description = $item['product']->post->post_content;
+//     }
+ 
+//     printf('<div class="product-description">%s</div>', $description );
+// }
+
+
+
+// add_filter( 'br_filters_options-woocommerce_removes_pagination-show', array(__CLASS__, 'woocommerce_removes_pagination'), 10, 1 );
+
+// function woocommerce_removes_pagination($show) {
+// 	return true;
+// }
+
+// function get_text_for_select_based_on_attribute($attribute) {
+
+// // Find the name of the attribute for the slug we passed in to the function
+// $attribute_name = wc_attribute_label($attribute);
+
+// // Create a string for our select
+// $select_text = 'Select a ' . $attribute_name;
+
+// // Send the $select_text variable back to our calling function
+// return $select_text;
+// }
+
+// add_filter('variable_product_select_text', 'get_text_for_select_based_on_attribute', 10, 1);
+
+
+// add_filter( 'woocommerce_get_price_html', 'custom_price_html', 100, 2 );
+// function custom_price_html( $price, $product ){
+//   $price .=   get_post_meta( get_the_ID(), '_regular_price', true);
+//   $price .= '<span>' . sprintf(get_woocommerce_currency_symbol() ) ;
+//     return apply_filters( 'woocommerce_get_price', $price );
+// }
+
+// add_filter( 'woocommerce_show_variation_price', '__return_false' );
+
+
+
 
 	// function disable_wp_emojicons() {
 

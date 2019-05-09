@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 global $product;
 
 
-$product_url =  get_the_post_thumbnail_url($product->ID);
+
 
 if ( ! is_a( $product, 'WC_Product' ) ) {
 	return;
@@ -29,9 +29,12 @@ if ( ! is_a( $product, 'WC_Product' ) ) {
 
 ?>
 	
-				<?php do_action( 'woocommerce_widget_product_item_start', $args ); ?>
+		<?php do_action( 'woocommerce_widget_product_item_start', $args ); ?>
 			<div class="col-lg-3">
 				<div class="tpl-catalogue__merch-item_widget">
+					
+					<?php  $product_url =  get_the_post_thumbnail_url($product->get_id()); ?>
+
 					<div class="tpl-catalogue__merch-img" style="background-image: url('<?php echo $product_url ; ?>');"></div>
 					<div class="tpl-catalogue__merch-body">
 						<h3 class="tpl product-title"><?php echo wp_kses_post( $product->get_name() ); ?></h3>
@@ -43,5 +46,5 @@ if ( ! is_a( $product, 'WC_Product' ) ) {
 					
 				</div>
 			</div>
-				<?php do_action( 'woocommerce_widget_product_item_end', $args ); ?>
+		<?php do_action( 'woocommerce_widget_product_item_end', $args ); ?>
 	
